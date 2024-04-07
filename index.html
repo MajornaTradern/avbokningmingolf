@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Monitoring</title>
+</head>
+<body>
+    <button id="startMonitoringBtn">Start Monitoring</button>
+
+    <script>
+        document.getElementById('startMonitoringBtn').addEventListener('click', function() {
+            fetch('http://127.0.0.1:5000/start_monitoring', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('Monitoring Started: ' + data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert(error);
+            });
+        });
+    </script>
+</body>
+</html>
