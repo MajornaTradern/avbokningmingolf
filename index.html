@@ -3,29 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Monitoring</title>
+    <title>Slot Monitoring System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 40px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .btn-custom {
+            font-size: 20px;
+            padding: 10px 24px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <button id="startMonitoringBtn">Start Monitoring</button>
 
-    <script>
-        document.getElementById('startMonitoringBtn').addEventListener('click', function() {
-            fetch('http://127.0.0.1:5000/start_monitoring', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                alert('Monitoring Started: ' + data.message);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert(error);
-            });
+<div class="container text-center">
+    <h2 class="mb-4">Welcome to the Slot Monitoring System</h2>
+    <button id="startMonitoringBtn" class="btn btn-custom">Start Monitoring</button>
+</div>
+
+<!-- Bootstrap and jQuery libraries -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById('startMonitoringBtn').addEventListener('click', function() {
+        fetch('http://127.0.0.1:5000/start_monitoring', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            alert('Monitoring Started: ' + data.message);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
         });
-    </script>
+    });
+</script>
 </body>
 </html>
